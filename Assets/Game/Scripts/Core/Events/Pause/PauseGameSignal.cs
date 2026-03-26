@@ -1,0 +1,6 @@
+namespace VehicleGame.Core.Events
+{
+    public class PauseGameSignal { }
+}
+
+
