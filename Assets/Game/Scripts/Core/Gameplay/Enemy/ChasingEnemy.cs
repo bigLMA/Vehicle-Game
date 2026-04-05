@@ -1,5 +1,6 @@
 using UnityEngine;
 using VehicleGame.Core.Data.Configs;
+using VehicleGame.Core.Events;
 using VehicleGame.Core.Interfaces;
 using Zenject;
 
@@ -11,14 +12,16 @@ namespace VehicleGame.Core.Gameplay.Enemy
         private IMovable _move;
         private IVehicle _target;
         private EnemyCollisionHandler _collisionHandler;
+        private SignalBus _signalBus;
 
         private EnemyStateManager _stateManager;
 
         [Inject]
-        public void Initialize(EnemyConfig config, IVehicle vehicle)
+        public void Initialize(EnemyConfig config, IVehicle vehicle, SignalBus signalBus)
         {
             _target = vehicle;
             _enemyConfig = config;
+            _signalBus = signalBus;
         }
 
         protected override void Awake()
@@ -59,9 +62,15 @@ namespace VehicleGame.Core.Gameplay.Enemy
 
         protected override void OnDeath()
         {
-            base.OnDeath();
-
+            // CHANGED ORDER
             _stateManager.Exit();
+
+            if(_health.current==0)
+            {
+                _signalBus.Fire(new EnemyKilledSignal(_enemyConfig.bounty));
+            }
+
+            base.OnDeath();
         }
 
         private void OnCollison()
@@ -69,9 +78,9 @@ namespace VehicleGame.Core.Gameplay.Enemy
             OnEnemyDeath?.Invoke(this);
         }
 
-        private void OnHealthChange(int arg1, int arg2)
+        private void OnHealthChange(int current, int max)
         {
-            if (arg1 < arg2)
+            if (current < max)
             {
                 _stateManager.EnterChase();
             }

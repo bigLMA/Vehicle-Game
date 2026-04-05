@@ -24,5 +24,8 @@ namespace VehicleGame.Core.Data.Configs
 
         [Header("Damage")]
         public int damage = 7;
+
+        [Header("Bounty")]
+        public int bounty = 5;
     }
 }

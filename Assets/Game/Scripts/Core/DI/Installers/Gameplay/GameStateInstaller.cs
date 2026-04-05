@@ -1,6 +1,7 @@
 using UnityEngine;
 using VehicleGame.Core.Data.Configs;
 using VehicleGame.Core.Events;
+using VehicleGame.Core.PlayerStats;
 using VehicleGame.Core.Systems.GameManager;
 using VehicleGame.Core.Systems.Input;
 using Zenject;
@@ -19,6 +20,7 @@ namespace VehicleGame.Core.DI
         {
             Container.Bind<GameStateManager>().FromInstance(_stateManager).AsSingle();
             Container.Bind<LevelConfig>().FromInstance(_levelConfig).AsSingle();
+            Container.BindInterfacesAndSelfTo<PlayerKillCount>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<InputService>().AsSingle().NonLazy();
 
             InstallSignalBus();
@@ -36,6 +38,7 @@ namespace VehicleGame.Core.DI
             Container.DeclareSignal<GameWonSignal>();
             Container.DeclareSignal<ResetLevelSignal>();
             Container.DeclareSignal<QuitGameSignal>();
+            Container.DeclareSignal<EnemyKilledSignal>();
         }
     }
 }

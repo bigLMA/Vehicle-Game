@@ -1,11 +1,11 @@
 using System;
+using UnityEngine;
 using VehicleGame.Core.Events;
 using VehicleGame.Utils.Data;
 using Zenject;
 
 namespace VehicleGame.Core.PlayerStats
 {
-    // TODO CREATE
     public class PlayerKillCount : IDisposable
     {
         private int count = 0;
@@ -13,29 +13,41 @@ namespace VehicleGame.Core.PlayerStats
         private SignalBus _signalBus;
         private LoadData _loadData;
         private SaveData _saveData;
+        private ISaveLoadDataProvider _saveDataProvider;
+
+        public event Action<int> OnCountChanged;
 
         [Inject]
-        private void Initialize(SignalBus signalBus, LoadData loadData, SaveData saveData)
+        private void Initialize(SignalBus signalBus, LoadData loadData, SaveData saveData, ISaveLoadDataProvider saveLoadDataProvider)
         {
+            _saveDataProvider = saveLoadDataProvider;
             _signalBus = signalBus;
             _loadData = loadData;
             _saveData = saveData;
 
             _signalBus.Subscribe<EnemyKilledSignal>(EnemyKilled);
-            _signalBus.Subscribe<GameWonSignal>(GameEnded); 
+            _signalBus.Subscribe<GameWonSignal>(GameEnded);
             _signalBus.Subscribe<GameLostSignal>(GameEnded);
+            _signalBus.Subscribe<ResetLevelSignal>(ResetCount);
         }
 
         private void EnemyKilled(EnemyKilledSignal signal)
         {
-            ++count;
+            count += signal.value;
+            OnCountChanged?.Invoke(count);
         }
 
         private void GameEnded()
         {
-            var data = _loadData.GetPlayerData<PlayerData>("PlayerData");
+            var data = _loadData.GetPlayerData<PlayerData>(_saveDataProvider.GetPlayerDataFileName()) ?? new PlayerData();
             data.coins += count;
-            _saveData.Save(data, "PlayerData");
+            _saveData.Save(data, _saveDataProvider.GetPlayerDataFileName());
+        }
+
+        private void ResetCount()
+        {
+            count = 0;
+            OnCountChanged?.Invoke(count);
         }
 
         public void Dispose()

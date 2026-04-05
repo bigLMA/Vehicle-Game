@@ -1,7 +1,14 @@
 namespace VehicleGame.Core.Events
 {
-    // TODO REGISTER
-    public class EnemyKilledSignal {/* ENEMY TYPE/KILL VALUE ETC*/}
+    public class EnemyKilledSignal 
+    {
+        public readonly int value;
+
+        public EnemyKilledSignal(int value) 
+        {
+            this.value = value; 
+        }
+    }
 }
 
 
