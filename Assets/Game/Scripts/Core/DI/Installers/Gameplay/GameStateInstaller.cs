@@ -20,7 +20,6 @@ namespace VehicleGame.Core.DI
         {
             Container.Bind<GameStateManager>().FromInstance(_stateManager).AsSingle();
             Container.Bind<LevelConfig>().FromInstance(_levelConfig).AsSingle();
-            Container.BindInterfacesAndSelfTo<PlayerKillCount>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<InputService>().AsSingle().NonLazy();
 
             InstallSignalBus();

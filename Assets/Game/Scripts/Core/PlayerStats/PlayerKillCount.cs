@@ -15,8 +15,6 @@ namespace VehicleGame.Core.PlayerStats
         private SaveData _saveData;
         private ISaveLoadDataProvider _saveDataProvider;
 
-        public event Action<int> OnCountChanged;
-
         [Inject]
         private void Initialize(SignalBus signalBus, LoadData loadData, SaveData saveData, ISaveLoadDataProvider saveLoadDataProvider)
         {
@@ -34,7 +32,7 @@ namespace VehicleGame.Core.PlayerStats
         private void EnemyKilled(EnemyKilledSignal signal)
         {
             count += signal.value;
-            OnCountChanged?.Invoke(count);
+            _signalBus.Fire(new CoinsChangedSignal(count));
         }
 
         private void GameEnded()
@@ -46,8 +44,8 @@ namespace VehicleGame.Core.PlayerStats
 
         private void ResetCount()
         {
-            count = 0;
-            OnCountChanged?.Invoke(count);
+            count = 0; 
+            _signalBus.Fire(new CoinsChangedSignal(count));
         }
 
         public void Dispose()

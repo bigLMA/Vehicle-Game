@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52ade52e95b110948b434767d158c89c, type: 3}
   m_Name: VehicleConfig
   m_EditorClassIdentifier: 
-  vehicleSpeed: 10
+  vehicleSpeed: 4
   vehicleHealthPoints: 1
