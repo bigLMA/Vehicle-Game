@@ -1,6 +1,6 @@
 using System;
 using VehicleGame.Core.Events;
-using VehicleGame.Utils.PlayerData;
+using VehicleGame.Utils.Data;
 using Zenject;
 
 namespace VehicleGame.Core.PlayerStats
@@ -11,15 +11,15 @@ namespace VehicleGame.Core.PlayerStats
         private int count = 0;
 
         private SignalBus _signalBus;
-        private LoadPlayerData _loadPlayerData;
-        private SavePlayerData _savePlayerData;
+        private LoadData _loadData;
+        private SaveData _saveData;
 
         [Inject]
-        private void Initialize(SignalBus signalBus, LoadPlayerData loadPlayerData, SavePlayerData savePlayerData)
+        private void Initialize(SignalBus signalBus, LoadData loadData, SaveData saveData)
         {
             _signalBus = signalBus;
-            _loadPlayerData = loadPlayerData;
-            _savePlayerData = savePlayerData;
+            _loadData = loadData;
+            _saveData = saveData;
 
             _signalBus.Subscribe<EnemyKilledSignal>(EnemyKilled);
             _signalBus.Subscribe<GameWonSignal>(GameEnded); 
@@ -33,9 +33,9 @@ namespace VehicleGame.Core.PlayerStats
 
         private void GameEnded()
         {
-            var data = _loadPlayerData.GetPlayerData();
+            var data = _loadData.GetPlayerData<PlayerData>("PlayerData");
             data.coins += count;
-            _savePlayerData.Save(data);
+            _saveData.Save(data, "PlayerData");
         }
 
         public void Dispose()
