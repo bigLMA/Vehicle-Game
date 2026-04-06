@@ -2,12 +2,15 @@ using UnityEngine;
 using VehicleGame.Utils.Data;
 using Zenject;
 
-public class SaveLoadInstaller : MonoInstaller
+namespace VehicleGame.Core.DI
 {
-    public override void InstallBindings()
+    public class SaveLoadInstaller : MonoInstaller
     {
-        Container.Bind<ISaveLoadDataProvider>().To<SaveLoadData>().AsSingle();
-        Container.Bind<LoadData>().AsSingle().NonLazy();
-        Container.Bind<SaveData>().AsSingle().NonLazy();
+        public override void InstallBindings()
+        {
+            Container.Bind<ISaveLoadDataProvider>().To<SaveLoadData>().AsSingle();
+            Container.Bind<LoadData>().AsSingle().NonLazy();
+            Container.Bind<SaveData>().AsSingle().NonLazy();
+        }
     }
 }
