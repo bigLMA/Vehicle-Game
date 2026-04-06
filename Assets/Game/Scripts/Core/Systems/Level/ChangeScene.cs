@@ -15,25 +15,9 @@ namespace VehicleGame.Core.Systems.Level
             _sceneLoader = sceneLoader;
         }
 
-        public async void ChangeSceneAsync(string sceneName)
+        public void LoadScene(string sceneName)
         {
-            var operation = _sceneLoader.LoadSceneAsync(sceneName);
-            operation.allowSceneActivation = false;
-            progress = operation.progress;
-
-            while(!operation.isDone)
-            {
-                await UniTask.Yield();
-
-                if(operation.progress>0.9f && operation.allowSceneActivation ==false)
-                {
-                    operation.allowSceneActivation=true;
-                }
-
-                progress = operation.progress;
-            }
-
-            progress = 0f;
+            _sceneLoader.LoadScene(sceneName);
         }
     }
 }

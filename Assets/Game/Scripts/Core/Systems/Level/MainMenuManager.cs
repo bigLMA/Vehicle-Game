@@ -28,7 +28,7 @@ namespace VehicleGame.Core.Systems.Level
 
         private void ChangeLevel(ChangeLevelSignal signal)
         {
-            _changeScene.ChangeSceneAsync(signal._levelName);
+            _changeScene.LoadScene(signal._levelName);
         }
 
         private void OnDestroy()
