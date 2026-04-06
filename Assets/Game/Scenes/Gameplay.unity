@@ -2785,6 +2785,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _startScreen: {fileID: 1764468077}
+  _notifierPrefab: {fileID: 2185292177234331452, guid: ba392c59298864a4a9e1eb439f76cace, type: 3}
 --- !u!1 &1988248847
 GameObject:
   m_ObjectHideFlags: 0

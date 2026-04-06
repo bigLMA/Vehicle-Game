@@ -67,7 +67,7 @@ namespace VehicleGame.Core.Gameplay.Enemy
 
             if(_health.current==0)
             {
-                _signalBus.Fire(new EnemyKilledSignal(_enemyConfig.bounty));
+                _signalBus.Fire(new EnemyKilledSignal(_enemyConfig.bounty, transform.position));
             }
 
             base.OnDeath();
