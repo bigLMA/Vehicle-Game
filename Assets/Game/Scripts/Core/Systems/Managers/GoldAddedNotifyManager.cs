@@ -57,7 +57,6 @@ namespace VehicleGame.Core.Systems.Managers
             foreach (var notifier in _notifiersList)
             {
                 notifier.OnTimerOver -= Notifier_OnTimerOver;
-               // _notifiersPool.Despawn(notifier);
             }
         }
     }
