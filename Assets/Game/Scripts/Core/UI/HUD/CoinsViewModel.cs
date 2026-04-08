@@ -38,6 +38,7 @@ namespace VehicleGame.Core.UI.HUD
 
             _playerData.coins-=value;
             _saveData.Save(_playerData, _saveLoadDataProvider.GetPlayerDataFileName());
+            _signalBus.Fire(new PurchasedSignal());
             NotifyCoinsChanged();
         }
 

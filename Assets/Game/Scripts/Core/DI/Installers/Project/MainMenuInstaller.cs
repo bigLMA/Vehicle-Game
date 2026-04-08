@@ -14,6 +14,7 @@ namespace VehicleGame.Core.DI
 
             SignalBusInstaller.Install(Container);
             Container.DeclareSignal<CoinsChangedSignal>();
+            Container.DeclareSignal<PurchasedSignal>();
             Container.DeclareSignal<ChangeLevelSignal>();
         }
     }
