@@ -24,7 +24,7 @@ namespace VehicleGame.Core.UI.HUD
             _saveData = saveData;
             _signalBus = signalBus;
 
-            _playerData = _loadData.GetPlayerData<PlayerData>(_saveLoadDataProvider.GetPlayerDataFileName());
+            _playerData = _loadData.Load<PlayerData>(_saveLoadDataProvider.GetPlayerDataFileName());
         }
 
         public bool CheckCoinPurchase(int value)

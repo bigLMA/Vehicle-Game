@@ -37,7 +37,7 @@ namespace VehicleGame.Core.PlayerStats
 
         private void GameEnded()
         {
-            var data = _loadData.GetPlayerData<PlayerData>(_saveDataProvider.GetPlayerDataFileName()) ?? new PlayerData();
+            var data = _loadData.Load<PlayerData>(_saveDataProvider.GetPlayerDataFileName()) ?? new PlayerData();
             data.coins += count;
             _saveData.Save(data, _saveDataProvider.GetPlayerDataFileName());
         }

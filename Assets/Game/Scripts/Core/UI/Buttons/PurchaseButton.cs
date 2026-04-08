@@ -1,6 +1,6 @@
 using TMPro;
 using UnityEngine;
-using VehicleGame.Core.UI.Buttons;
+using VehicleGame.Core.Gameplay.Vehicle;
 using VehicleGame.Core.UI.HUD;
 using Zenject;
 
@@ -10,10 +10,12 @@ namespace VehicleGame.Core.UI.Buttons
     {
         private TextMeshProUGUI _buttonTextField;
         private CoinsViewModel _coinsViewModel;
+        private VehicleUpgradeViewModel _vehicleUpgradeViewModel;
 
         [Inject]
-        private void Initialize(CoinsViewModel coinsViewModel)
+        private void Initialize(CoinsViewModel coinsViewModel, VehicleUpgradeViewModel vehicleUpgradeViewModel)
         {
+            _vehicleUpgradeViewModel = vehicleUpgradeViewModel;
             _coinsViewModel = coinsViewModel;
         }
 
@@ -30,15 +32,17 @@ namespace VehicleGame.Core.UI.Buttons
 
         private void MakePurchase()
         {
-            //if(_coinsViewModel.CheckCoinPurchase())
-            //{
-            //    _coinsViewModel.Purchase();
-            //}
+            var cost = _vehicleUpgradeViewModel.GetCurrentUpgradeCost();
+
+            if (_coinsViewModel.CheckCoinPurchase(cost))
+            {
+                _coinsViewModel.Purchase(cost);
+            }
         }
 
         private void UpdateText()
         {
-            _buttonTextField.text = $"Purchase ({0})";
+            _buttonTextField.text = $"Purchase ({_vehicleUpgradeViewModel.GetCurrentUpgradeCost()})";
         }
     }
 }

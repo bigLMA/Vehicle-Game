@@ -5,7 +5,7 @@ namespace VehicleGame.Utils.Data
 {
     public class LoadData
     {
-        public T GetPlayerData<T>(string path)
+        public T Load<T>(string path) where T : new()
         {
             path = string.Concat(Application.persistentDataPath + "/" + path + ".json");
 
@@ -17,7 +17,7 @@ namespace VehicleGame.Utils.Data
                 return data;
             }
 
-            return default;
+            return new T();
         }
     }
 }
