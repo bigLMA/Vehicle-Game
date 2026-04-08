@@ -38,22 +38,9 @@ namespace VehicleGame.Core.Gameplay.Vehicle
                 * _vehicleUpgradeConfig.priceIncrease;
         }
 
-        public void UpgradeTurret()
+        public void Upgrade(VehicleUpgrader upgrader)
         {
-            _vehicleUpgradeData.turretUpgrades++;
-            SaveUpgradeData();
-
-        }
-
-        public void UpgradeFrame()
-        {
-            _vehicleUpgradeData.frameUpgrades++;
-            SaveUpgradeData();
-        }
-
-        public void UpgradeWheel()
-        {
-            _vehicleUpgradeData.wheelUpgrades++;
+            upgrader.Upgrade(_vehicleUpgradeData);
             SaveUpgradeData();
         }
 
