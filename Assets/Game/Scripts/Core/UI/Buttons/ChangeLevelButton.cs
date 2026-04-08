@@ -1,15 +1,14 @@
 using UnityEngine;
-using UnityEngine.UI;
 using VehicleGame.Core.Events;
 using Zenject;
+
 namespace VehicleGame.Core.UI.Buttons
 {
-    public class ChangeLevelButton : MonoBehaviour
+    public class ChangeLevelButton : ButtonBase
     {
         [SerializeField]
         private string _levelName;
-        
-        private Button _button;
+
         private SignalBus _signalBus;
 
         [Inject]
@@ -18,19 +17,9 @@ namespace VehicleGame.Core.UI.Buttons
             _signalBus = signalBus;
         }
 
-        void Start()
+        public override void ButtonClickListener()
         {
-            _button = GetComponent<Button>();
-
-            _button.onClick.AddListener(() =>
-            {
-                _signalBus.Fire(new ChangeLevelSignal(_levelName));
-            });
-        }
-
-        private void OnDestroy()
-        {
-            _button.onClick.RemoveAllListeners();
+            _signalBus.Fire(new ChangeLevelSignal(_levelName));
         }
     }
 }
