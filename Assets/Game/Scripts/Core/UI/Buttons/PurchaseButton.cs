@@ -8,6 +8,7 @@ namespace VehicleGame.Core.UI.Buttons
 {
     public class PurchaseButton : ButtonBase
     {
+        [SerializeField]
         private TextMeshProUGUI _buttonTextField;
         private CoinsViewModel _coinsViewModel;
         private VehicleUpgradeViewModel _vehicleUpgradeViewModel;
@@ -21,7 +22,7 @@ namespace VehicleGame.Core.UI.Buttons
 
         private void Awake()
         {
-            _buttonTextField = GetComponent<TextMeshProUGUI>();
+            UpdateText();
         }
 
         public override void ButtonClickListener()

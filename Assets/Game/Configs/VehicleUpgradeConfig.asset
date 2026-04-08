@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d17c004e70ffa04485716b1af9ed987, type: 3}
+  m_Name: VehicleUpgradeConfig
+  m_EditorClassIdentifier: 
+  initialPrice: 0
+  priceIncrease: 10
+  healthPerFrame: 10
+  speedPerWheel: 0.2
+  damagePerTurret: 10

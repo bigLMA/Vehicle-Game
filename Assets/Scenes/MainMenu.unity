@@ -365,6 +365,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4c5bde033db22242941f86d884e07a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _buttonTextField: {fileID: 835943704}
 --- !u!1 &290928144
 GameObject:
   m_ObjectHideFlags: 0
@@ -1093,7 +1094,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Purchase
+  m_text: Purchase (0)
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1120,8 +1121,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 70
-  m_fontSizeBase: 70
+  m_fontSize: 50
+  m_fontSizeBase: 50
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -2163,6 +2164,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63a4c00a683b8d0418fe3192e59cdf13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _vehicleUpgradeConfig: {fileID: 11400000, guid: 1c555683abb18c644832efbfc7cbcc4f, type: 2}
 --- !u!4 &1838548163
 Transform:
   m_ObjectHideFlags: 0
