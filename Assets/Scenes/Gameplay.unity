@@ -3195,6 +3195,7 @@ MonoBehaviour:
   _turret: {fileID: 1473333347}
   _projectilePrefab: {fileID: 3023259569611679075, guid: 968d58fe6e3b30f4bba7903cf4dd5daa, type: 3}
   _projectileConfig: {fileID: 11400000, guid: c0772a549a8b9d74a8731f17ae353e99, type: 2}
+  _vehicleUpgradeConfig: {fileID: 11400000, guid: 1c555683abb18c644832efbfc7cbcc4f, type: 2}
 --- !u!1001 &7612437263268678996
 PrefabInstance:
   m_ObjectHideFlags: 0

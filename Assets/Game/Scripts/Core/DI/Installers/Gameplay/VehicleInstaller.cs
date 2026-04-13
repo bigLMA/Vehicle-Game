@@ -28,13 +28,19 @@ namespace VehicleGame.Core.DI
         [SerializeField]
         private ProjectileConfig _projectileConfig;
 
+        [Header("Upgrades")]
+        [SerializeField]
+        private VehicleUpgradeConfig _vehicleUpgradeConfig;
+
+
         public override void InstallBindings()
         {
             Container.Bind<IVehicle>().FromInstance(_vehicle).AsSingle();
             Container.Bind<VehicleConfig>().FromInstance(_vehicleConfig).AsSingle();
             Container.Bind<TurretConfig>().FromInstance(_turretConfig).AsSingle();
             Container.Bind<ProjectileConfig>().FromInstance(_projectileConfig).AsSingle();
-            Container.Bind<ISwipeReceiver>().FromInstance(_turret).AsSingle();
+            Container.Bind<ISwipeReceiver>().FromInstance(_turret).AsSingle(); 
+            Container.Bind<VehicleUpgradeConfig>().FromInstance(_vehicleUpgradeConfig);
 
             // Pools
             Container.BindMemoryPool<Projectile, ProjectilePool>()

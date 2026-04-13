@@ -2,6 +2,7 @@ using UnityEngine;
 using VehicleGame.Core.Data.Configs;
 using VehicleGame.Core.Events;
 using VehicleGame.Core.Interfaces;
+using VehicleGame.Utils.Data;
 using Zenject;
 
 namespace VehicleGame.Core.Gameplay.Vehicle
@@ -13,16 +14,21 @@ namespace VehicleGame.Core.Gameplay.Vehicle
 
         private VehicleConfig _vehicleConfig;
         private SignalBus _signalBus;
+        private LoadData _loadData;
+        private ISaveLoadDataProvider _saveLoadProvider;
+        private VehicleUpgradeConfig _vehicleUpgradeConfig;
 
         private void Awake()
         {
+            var upgradeData = _loadData.Load<VehicleUpgradeData>(_saveLoadProvider.GetVehicleDataFileName());
+
             // Initialize health
             _health = GetComponent<IHealth>();
-            _health.Setup(_vehicleConfig.vehicleHealthPoints);
+            _health.Setup(_vehicleConfig.vehicleHealthPoints+upgradeData.frameUpgrades*_vehicleUpgradeConfig.healthPerFrame);
 
             // Initialize movable
             _move = GetComponent<IMovable>();
-            _move.SetSpeed(_vehicleConfig.vehicleSpeed);
+            _move.SetSpeed(_vehicleConfig.vehicleSpeed + upgradeData.wheelUpgrades * _vehicleUpgradeConfig.speedPerWheel);
             _move.SetDirection(Vector3.forward);
 
             _health.OnDeath += OnDeath;
@@ -37,8 +43,16 @@ namespace VehicleGame.Core.Gameplay.Vehicle
         }
 
         [Inject]
-        public void Initialize(VehicleConfig vehicleConfig, SignalBus signalBus)
+        public void Initialize(
+            VehicleConfig vehicleConfig,
+            SignalBus signalBus,
+            LoadData loadData, 
+            ISaveLoadDataProvider saveLoadProvider,
+            VehicleUpgradeConfig upgradeConfig)
         {
+            _vehicleUpgradeConfig = upgradeConfig;
+            _saveLoadProvider = saveLoadProvider;
+            _loadData = loadData;
             _signalBus = signalBus;
             _vehicleConfig = vehicleConfig;
         }

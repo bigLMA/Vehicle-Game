@@ -1,6 +1,8 @@
 using UnityEngine;
 using VehicleGame.Core.Data.Configs;
+using VehicleGame.Core.Gameplay.Vehicle;
 using VehicleGame.Core.Interfaces;
+using VehicleGame.Utils.Data;
 using Zenject;
 
 namespace VehicleGame.Core.Gameplay.Projectile
@@ -15,6 +17,9 @@ namespace VehicleGame.Core.Gameplay.Projectile
 
         private TrailRenderer _trailRenderer;
         private IMovable _move;
+        private LoadData _loadData;
+        private ISaveLoadDataProvider _saveLoadProvider;
+        private VehicleUpgradeConfig _vehicleUpgradeConfig;
 
         private void Awake()
         {
@@ -24,8 +29,14 @@ namespace VehicleGame.Core.Gameplay.Projectile
         }
 
         [Inject]
-        private void Initialize(ProjectileConfig config)
+        private void Initialize(ProjectileConfig config,
+            LoadData loadData,
+            ISaveLoadDataProvider saveLoadProvider,
+            VehicleUpgradeConfig upgradeConfig)
         {
+            _loadData = loadData;
+            _vehicleUpgradeConfig = upgradeConfig;
+            _saveLoadProvider = saveLoadProvider;
             _config = config;
         }
 
@@ -67,7 +78,8 @@ namespace VehicleGame.Core.Gameplay.Projectile
         {
             if (collision.gameObject.TryGetComponent<IDamageable>(out var damagable))
             {
-                damagable.TakeDamage(_config.damage);
+                var upgradeData = _loadData.Load<VehicleUpgradeData>(_saveLoadProvider.GetVehicleDataFileName());
+                damagable.TakeDamage(_config.damage + upgradeData.turretUpgrades * _vehicleUpgradeConfig.damagePerTurret);
             }
 
             DespawnSelf();
