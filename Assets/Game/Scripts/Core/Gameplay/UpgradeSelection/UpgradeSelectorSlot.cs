@@ -1,15 +1,19 @@
 using System;
 using UnityEngine;
 
-public class UpgradeSelectorSlot : MonoBehaviour
+
+namespace VehicleGame.Core.Gameplay.UpgradeSelector
 {
-    [SerializeField]
-    private int _slotIndex;
-
-    public event Action<int> OnClick;
-
-    private void OnMouseDown()
+    public class UpgradeSelectorSlot : MonoBehaviour
     {
-        OnClick?.Invoke(_slotIndex);
+        [SerializeField]
+        private int _slotIndex;
+
+        public event Action<int> OnClick;
+
+        private void OnMouseDown()
+        {
+            OnClick?.Invoke(_slotIndex);
+        }
     }
 }
