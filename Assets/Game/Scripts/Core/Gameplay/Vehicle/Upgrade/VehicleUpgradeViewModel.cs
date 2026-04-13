@@ -1,3 +1,4 @@
+using VehicleGame.Core.Events;
 using VehicleGame.Utils.Data;
 using Zenject;
 
@@ -27,13 +28,21 @@ namespace VehicleGame.Core.Gameplay.Vehicle
             _signalBus = signalBus;
 
             _vehicleUpgradeData = _loadData.Load<VehicleUpgradeData>(_saveLoadDataProvider.GetVehicleDataFileName());
+            _signalBus.Subscribe<PurchasedSignal>(Purchased);
         }
 
         public int GetCurrentUpgradeCost()
         {
-            return _vehicleUpgradeConfig.initialPrice 
-                + (_vehicleUpgradeData.turretUpgrades + _vehicleUpgradeData.frameUpgrades + _vehicleUpgradeData.wheelUpgrades) 
-                * _vehicleUpgradeConfig.priceIncrease;
+            return _vehicleUpgradeConfig.initialPrice + _vehicleUpgradeData.upgradesBought * _vehicleUpgradeConfig.priceIncrease;
+            //return _vehicleUpgradeConfig.initialPrice 
+            //    + (_vehicleUpgradeData.turretUpgrades + _vehicleUpgradeData.frameUpgrades + _vehicleUpgradeData.wheelUpgrades) 
+            //    * _vehicleUpgradeConfig.priceIncrease;
+        }
+
+        public void Purchased()
+        {
+            _vehicleUpgradeData.upgradesBought++;
+            SaveUpgradeData();
         }
 
         public void Upgrade(VehicleUpgrader upgrader)
