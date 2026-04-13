@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2029384685843651547}
   - component: {fileID: 4961291214159664756}
   - component: {fileID: 7903639366569101965}
+  - component: {fileID: 6559402961671640111}
   m_Layer: 0
   m_Name: WheelUpgradeModel
   m_TagString: Untagged
@@ -99,3 +100,24 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!135 &6559402961671640111
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7123416983464268747}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.3598076
+  m_Center: {x: -0.004531623, y: -0.000017851591, z: -0.00002637506}
