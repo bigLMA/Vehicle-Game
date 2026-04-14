@@ -28,8 +28,6 @@ namespace VehicleGame.Core.Gameplay.Vehicle
 
         private void OnMouseDrag()
         {
-            print("DRAG");
-
             var zDepth = Camera.main.WorldToScreenPoint(transform.position).z;
 
             Vector3 touchWorld = Camera.main.ScreenToWorldPoint(
@@ -46,7 +44,6 @@ namespace VehicleGame.Core.Gameplay.Vehicle
 
         private void OnMouseUp()
         {
-            print("DRAG Ended");
             var signal = new DragUpdateEndedSignal(transform.position);
             _signalBus.Fire(signal);
 
