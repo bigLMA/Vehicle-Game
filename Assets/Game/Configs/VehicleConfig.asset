@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: VehicleConfig
   m_EditorClassIdentifier: 
   vehicleSpeed: 4
-  vehicleHealthPoints: 1
+  vehicleHealthPoints: 100
