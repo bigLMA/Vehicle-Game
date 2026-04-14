@@ -5,6 +5,8 @@ using VehicleGame.Core.Data.Configs;
 using VehicleGame.Core.Events;
 
 using VehicleGame.Core.Interfaces;
+using VehicleGame.Core.Systems.Level;
+
 
 
 #if UNITY_EDITOR
@@ -18,6 +20,7 @@ namespace VehicleGame.Core.Systems.GameManager
         private SignalBus _signalBus;
         private LevelConfig _levelConfig;
         private IVehicle _vehicle;
+        private ChangeScene _changeScene;
 
         private void Start()
         {
@@ -33,11 +36,13 @@ namespace VehicleGame.Core.Systems.GameManager
             _signalBus.Unsubscribe<StartLevelSignal>(StartLevel);
             _signalBus.Unsubscribe<ResetLevelSignal>(ResetLevel);
             _signalBus.Unsubscribe<QuitGameSignal>(QuitGame);
+            _signalBus.Unsubscribe<ChangeLevelSignal>(ChangeScene);
         }
 
         [Inject]
-        public void Initialize(SignalBus signalBus, LevelConfig levelConfig, IVehicle vehicle)
+        public void Initialize(SignalBus signalBus, LevelConfig levelConfig, IVehicle vehicle, ChangeScene changeScene)
         {
+            _changeScene = changeScene;
             _levelConfig = levelConfig;
             _signalBus = signalBus;
             _vehicle = vehicle;
@@ -48,6 +53,7 @@ namespace VehicleGame.Core.Systems.GameManager
             _signalBus.Subscribe<StartLevelSignal>(StartLevel);
             _signalBus.Subscribe<ResetLevelSignal>(ResetLevel);
             _signalBus.Subscribe<QuitGameSignal>(QuitGame);
+            _signalBus.Subscribe<ChangeLevelSignal>(ChangeScene);
         }
 
         private void Update()
@@ -78,6 +84,11 @@ namespace VehicleGame.Core.Systems.GameManager
         private void StartLevel()
         {
             _signalBus?.Fire(new ResumeGameSignal());
+        }
+
+        private void ChangeScene(ChangeLevelSignal signal)
+        {
+            _changeScene.LoadScene(signal._levelName);
         }
 
         private void QuitGame()

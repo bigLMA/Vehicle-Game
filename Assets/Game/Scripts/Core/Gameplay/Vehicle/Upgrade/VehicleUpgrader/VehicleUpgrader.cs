@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using VehicleGame.Core.Events;
+using VehicleGame.Core.Systems.GameManager;
 using Zenject;
 
 namespace VehicleGame.Core.Gameplay.Vehicle
@@ -18,14 +19,17 @@ namespace VehicleGame.Core.Gameplay.Vehicle
 
         public abstract void Upgrade(VehicleUpgradeData data);
 
-        //[Inject]
-        //private void Initialize(SignalBus signalBus)
-        //{
-        //    _signalBus = signalBus;
-        //}
+        private void Start()
+        {
+            var collider = GetComponent<Collider>();
+            collider.enabled = false;
+            collider.enabled = true;
+        }
 
         private void OnMouseDrag()
         {
+            print("DRAG");
+
             var zDepth = Camera.main.WorldToScreenPoint(transform.position).z;
 
             Vector3 touchWorld = Camera.main.ScreenToWorldPoint(
@@ -42,6 +46,7 @@ namespace VehicleGame.Core.Gameplay.Vehicle
 
         private void OnMouseUp()
         {
+            print("DRAG Ended");
             var signal = new DragUpdateEndedSignal(transform.position);
             _signalBus.Fire(signal);
 

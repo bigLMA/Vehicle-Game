@@ -17,6 +17,6 @@ MonoBehaviour:
   zSpawnStart: 15
   zSpawnEnd: 95
   roadWidth: 8
-  enemiesAmount: 30
+  enemiesAmount: 25
   groundPrefab: {fileID: 2315592187852131110, guid: b93a7fec6bcb33b4d848f993be3544c7, type: 3}
   groundSpawnInterval: 75

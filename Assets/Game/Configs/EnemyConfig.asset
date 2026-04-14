@@ -20,4 +20,5 @@ MonoBehaviour:
   chaseSpeed: 1.8
   chaseDistance: 12
   maxHealth: 15
-  damage: 7
+  damage: 15
+  bounty: 5

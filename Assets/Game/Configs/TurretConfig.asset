@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10b18972c0d955f47bf8e30df8b30f63, type: 3}
   m_Name: TurretConfig
   m_EditorClassIdentifier: 
-  sensitivity: 0.2
+  sensitivity: 1
   damping: 5
   maxRotationSpeed: 200
   initialShootDelay: 1
