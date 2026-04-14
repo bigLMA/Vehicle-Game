@@ -23,6 +23,8 @@ namespace VehicleGame.Core.DI
             Container.DeclareSignal<CoinsChangedSignal>();
             Container.DeclareSignal<PurchasedSignal>();
             Container.DeclareSignal<ChangeLevelSignal>();
+            Container.DeclareSignal<DragUpdateStartedSignal>();
+            Container.DeclareSignal<DragUpdateEndedSignal>();
         }
     }
 }

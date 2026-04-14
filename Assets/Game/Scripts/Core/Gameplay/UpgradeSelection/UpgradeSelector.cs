@@ -19,10 +19,12 @@ namespace VehicleGame.Core.Gameplay.UpgradeSelector
 
         private VehicleUpgradeViewModel _vehicleUpgradeViewModel;
         private SignalBus _signalBus;
+        private DiContainer _container;
 
         [Inject]
-        private void Initialize(VehicleUpgradeViewModel vehicleUpgradeViewModel, SignalBus signalBus)
+        private void Initialize(VehicleUpgradeViewModel vehicleUpgradeViewModel, SignalBus signalBus, DiContainer container)
         {
+            _container = container;
             _signalBus = signalBus;
             _vehicleUpgradeViewModel = vehicleUpgradeViewModel;
         }
@@ -63,7 +65,7 @@ namespace VehicleGame.Core.Gameplay.UpgradeSelector
             var key = keys[idx];
 
             // Insert slot
-            emptySlot.InsertSlot(_upgradeDictionary[key]);
+            emptySlot.InsertSlot(_container.InstantiatePrefab(_upgradeDictionary[key]).GetComponent<VehicleUpgrader>());
         }
 
         private void Slot_OnClick(VehicleUpgrader upgrade)

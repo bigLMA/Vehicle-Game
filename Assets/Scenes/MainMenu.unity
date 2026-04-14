@@ -949,8 +949,77 @@ PrefabInstance:
     - {fileID: 1065353585140484676, guid: f811e1cd6d99e89479d3454a51febb96, type: 3}
     - {fileID: 9156182912664144478, guid: f811e1cd6d99e89479d3454a51febb96, type: 3}
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3743723166867688901, guid: f811e1cd6d99e89479d3454a51febb96, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 625861785}
+    - targetCorrespondingSourceObject: {fileID: 3611799371777656656, guid: f811e1cd6d99e89479d3454a51febb96, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 625861789}
+    - targetCorrespondingSourceObject: {fileID: 3949051089287767997, guid: f811e1cd6d99e89479d3454a51febb96, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 625861788}
+    - targetCorrespondingSourceObject: {fileID: 695057524554068775, guid: f811e1cd6d99e89479d3454a51febb96, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 941779036}
   m_SourcePrefab: {fileID: 100100000, guid: f811e1cd6d99e89479d3454a51febb96, type: 3}
+--- !u!1 &625861784 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3743723166867688901, guid: f811e1cd6d99e89479d3454a51febb96, type: 3}
+  m_PrefabInstance: {fileID: 625861783}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &625861785
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 625861784}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d4f17d747f498b46a1c64a8e1914c24, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _key: frame
+  _selectedMaterial: {fileID: 2100000, guid: d7a5af261fd34494893163e9c32e630f, type: 2}
+--- !u!1 &625861786 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3949051089287767997, guid: f811e1cd6d99e89479d3454a51febb96, type: 3}
+  m_PrefabInstance: {fileID: 625861783}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &625861787 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3611799371777656656, guid: f811e1cd6d99e89479d3454a51febb96, type: 3}
+  m_PrefabInstance: {fileID: 625861783}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &625861788
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 625861786}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d4f17d747f498b46a1c64a8e1914c24, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _key: wheel
+  _selectedMaterial: {fileID: 2100000, guid: d7a5af261fd34494893163e9c32e630f, type: 2}
+--- !u!114 &625861789
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 625861787}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d4f17d747f498b46a1c64a8e1914c24, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _key: wheel
+  _selectedMaterial: {fileID: 2100000, guid: d7a5af261fd34494893163e9c32e630f, type: 2}
 --- !u!1 &753644183
 GameObject:
   m_ObjectHideFlags: 0
@@ -1212,6 +1281,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 835943702}
   m_CullTransparentMesh: 1
+--- !u!1 &941779035 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 695057524554068775, guid: f811e1cd6d99e89479d3454a51febb96, type: 3}
+  m_PrefabInstance: {fileID: 625861783}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &941779036
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 941779035}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d4f17d747f498b46a1c64a8e1914c24, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _key: turret
+  _selectedMaterial: {fileID: 2100000, guid: d7a5af261fd34494893163e9c32e630f, type: 2}
 --- !u!1 &1139739711
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,6 +1,7 @@
-
+using System;
 using UnityEngine;
-using UnityEngine.InputSystem.EnhancedTouch;
+using VehicleGame.Core.Events;
+using Zenject;
 
 namespace VehicleGame.Core.Gameplay.Vehicle
 {
@@ -8,9 +9,20 @@ namespace VehicleGame.Core.Gameplay.Vehicle
     {
         private Vector3 _offset;
 
+        [Inject]
+        private SignalBus _signalBus;
+
+        public event Action<bool> OnUpgrade;
+
         public abstract string GetKey(); 
 
         public abstract void Upgrade(VehicleUpgradeData data);
+
+        //[Inject]
+        //private void Initialize(SignalBus signalBus)
+        //{
+        //    _signalBus = signalBus;
+        //}
 
         private void OnMouseDrag()
         {
@@ -24,11 +36,16 @@ namespace VehicleGame.Core.Gameplay.Vehicle
             touchWorld.z = transform.position.z;
 
             transform.position = touchWorld;
+
+            _signalBus.Fire(new DragUpdateStartedSignal(GetKey()));
         }
 
         private void OnMouseUp()
         {
-            
+            var signal = new DragUpdateEndedSignal(transform.position);
+            _signalBus.Fire(signal);
+
+            OnUpgrade?.Invoke(signal.success);
         }
     }
 }
